@@ -1,0 +1,13 @@
+.banner{
+    max-height: 450px;
+    object-fit: cover;
+    width: 100%;
+}
+.header_text{
+    max-height: 450px;
+    background-color:palevioletred;
+    width: 100%;
+}
+.owl-theme .owl-dots{
+    display: none;
+}
