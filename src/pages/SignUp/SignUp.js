@@ -12,6 +12,7 @@ const SignIn = () => {
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
+        const profile = form.image.value;
         const password = form.password.value;
         
         signUp(email,password)
@@ -38,6 +39,14 @@ const SignIn = () => {
                                 </label>
                                 <input name='name' type="text" placeholder="Full Name" className="input input-bordered" required />
                             </div>
+
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo URL</span>
+                                </label>
+                                <input name='image' type="text" placeholder="Photo url" className="input input-bordered" required />
+                            </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>

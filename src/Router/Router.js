@@ -5,8 +5,10 @@ import AddService from '../pages/AddService/AddService';
 import Home from '../pages/Home/Home';
 import ServiceDetails from '../pages/ServiceDetails/ServiceDetails';
 import Services from '../pages/Services/Services';
+import MyReview from '../pages/MyReveiew/MyReview';
 import SignIn from '../pages/SignIn/SignIn';
 import SignUp from '../pages/SignUp/SignUp';
+import PrivateRoute from './PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -34,14 +36,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addservice',
-                element:<AddService></AddService>
+                element:<PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
                 path: '/myreview',
-                loader: async () => {
-                    return fetch(`http://localhost:5000/services`);
-                  },
-                element:<ServiceDetails></ServiceDetails>
+                element:<MyReview></MyReview>
             },
 
         ]

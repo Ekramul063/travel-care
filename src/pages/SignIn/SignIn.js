@@ -1,23 +1,27 @@
 import React from 'react';
 import { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import Navbar from '../Navbar/Navbar';
 
 const SignIn = () => {
     const {logIn} = useContext(AuthContext);
-    const navigate= useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+    const navigate = useNavigate();
 
     const handleSignIn = event =>{
+
         event.preventDefault()
-        const from = event.target;
-        const email = from.email.value;
-        const password = from.password.value;
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
         logIn(email,password)
         .then(result=>{
             const user = result.user;
-            from.reset();
-            navigate('/');
+            form.reset();
+            navigate(from ,{replace:true});
         })
         .catch(err=>console.error(err))
         
@@ -47,7 +51,9 @@ const SignIn = () => {
                             <div className="form-control mt-6">
                                 <button type='submit' className="btn btn-primary">Sign In</button>
                             </div>
+                            <p className='text-center mt-5'>Don't have an account <Link to={'/signup'} className='ml-2 underline text-primary font-bold'>Please SignUp</Link></p>
                         </div>
+                       
                     </form>
                 </div>
             </div>

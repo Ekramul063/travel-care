@@ -8,6 +8,7 @@ import withReactContent from 'sweetalert2-react-content';
 const ServiceDetails = () => {
     const service = useLoaderData();
     const {user} = useContext(AuthContext);
+    console.log(user);
 
     const MySwal = withReactContent(Swal);
 
@@ -21,11 +22,12 @@ const ServiceDetails = () => {
         }
         const form = event.target;
         const email =user?.email;
+        const img = user?.photoURL;
         const serviceId = service._id;
         const serviceTitle = form.title.value;
         const description = form.description.value;
         const review ={
-            serviceId,serviceTitle,description,email
+            serviceId,serviceTitle,description,email,img
 
         }
 
