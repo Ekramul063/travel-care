@@ -13,7 +13,7 @@ const SignIn = () => {
         const email = form.email.value;
         const phone = form.phone.value;
         const password = form.password.value;
-        //console.log(name,email,phone,password)
+        
         signUp(email,password)
         .then(result =>{
             const user = result.user;

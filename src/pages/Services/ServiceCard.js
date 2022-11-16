@@ -8,6 +8,10 @@ const ServiceCard = ({ service }) => {
             <figure><img src={img} alt="img" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
+                <div className='flex justify-between'>
+                <p>{price}$</p>
+                <p>{duration} days/night</p>
+                </div>
                 <p>{description.slice(0,150)} .....</p>
                 <div className="card-actions justify-end">
                 <Link to={`/services/${_id}`}><button className="btn btn-primary">Details</button></Link>

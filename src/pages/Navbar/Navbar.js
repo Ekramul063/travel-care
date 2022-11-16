@@ -24,6 +24,9 @@ const Navbar = () => {
           <ul className="menu menu-horizontal p-0">
             <li><Link to={'/'}>Home</Link></li>
             <li><Link to={'/services'}>Services</Link></li>
+            <li><Link to={'/addservice'}>Add Service</Link></li>
+            <li><Link to={'/addservice'}>My Review</Link></li>
+           
             <li className='btn btn-warning ml-5'>
               {
                 user?.uid ?

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 const ServiceDetails = () => {
     const service = useLoaderData();
-    console.log(service)
     return (
         <div>
             <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-7 pt-10 pb-24">
@@ -11,6 +10,10 @@ const ServiceDetails = () => {
                         <figure><img src={service?.img} alt="img" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{service?.title}</h2>
+                            <div className='flex justify-between'>
+                                <p>{service?.price}$</p>
+                                <p>{service?.duration} days/night</p>
+                            </div>
                             <p>{service?.description}</p>
                             <div className="card-actions justify-end">
                                 <Link><button className="btn btn-primary">Book Now</button></Link>

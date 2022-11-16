@@ -7,11 +7,14 @@ const HomePageServiesCard = ({ service }) => {
     const { _id, img, price, title, description, duration } = service;
     return (
         <div className="card card-compact w-full bg-base-100 shadow-xl">
-            <PhotoProvider src={img}>
-                <PhotoView>
+
+            <PhotoProvider >
+                <PhotoView src={img}>
                 <figure><img src={img} alt="img" /></figure>
                 </PhotoView>
             </PhotoProvider>
+
+
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <div className='flex justify-between'>

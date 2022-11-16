@@ -45,7 +45,7 @@ const SignIn = () => {
                                
                             </div>
                             <div className="form-control mt-6">
-                                <button onSubmit={handleSignIn} className="btn btn-primary">Sign In</button>
+                                <button type='submit' className="btn btn-primary">Sign In</button>
                             </div>
                         </div>
                     </form>
