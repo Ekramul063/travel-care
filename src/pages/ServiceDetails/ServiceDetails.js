@@ -1,7 +1,52 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthProvider';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 const ServiceDetails = () => {
     const service = useLoaderData();
+    const {user} = useContext(AuthContext);
+
+    const MySwal = withReactContent(Swal);
+
+    const handleAddReview = event =>{
+        event.preventDefault();
+        if(!user?.uid){
+            return  MySwal.fire({
+                title: <strong>Please SignIn!</strong>,
+                icon: 'warning'
+              })
+        }
+        const form = event.target;
+        const email =user?.email;
+        const serviceId = service._id;
+        const serviceTitle = form.title.value;
+        const description = form.description.value;
+        const review ={
+            serviceId,serviceTitle,description,email
+
+        }
+
+        fetch('http://localhost:5000/reviews',{
+            method:'post',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(review)
+        })
+        .then(res => res.json())
+        .then(data => {
+           if(data.acknowledged){
+            MySwal.fire({
+                title: <strong>Review Added Successfully!</strong>,
+                icon: 'success'
+              })
+            form.reset()
+           }
+        })
+    }
     return (
         <div>
             <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-7 pt-10 pb-24">
@@ -21,8 +66,41 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                 </div>
+
                 <div>
-                    <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, eius?</h1>
+
+                <div className="hero min-h-screen bg-base-200">
+                <div className=" w-full px-10 mx-auto flex-col my-16">
+
+                    <form onSubmit={handleAddReview} className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">
+                        <div className="card-body">
+
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Service Title</span>
+                                </label>
+                                <input name='title' value={service?.title} type="text" placeholder="Service Title" className="input input-bordered" />
+                            </div>
+
+
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Write review</span>
+                                </label>
+                                <textarea name='description' className="textarea textarea-bordered" placeholder="Service Description"></textarea>
+
+                            </div>
+
+
+
+                            <div className="form-control mt-6">
+                                <button type='submit' className="btn btn-primary">Add Review</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                    
 
                 </div>
             </div>
