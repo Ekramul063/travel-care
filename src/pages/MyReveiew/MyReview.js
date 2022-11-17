@@ -14,6 +14,17 @@ const MyReview = () => {
             .then(data => setReview(data))
     }, [user.email])
 
+
+    const handleUpdateReview = (id) =>{
+
+        fetch(`http://localhost:5000/reviews/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+
+    }
+
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure you want to delete this review');
         if(proceed){
@@ -37,6 +48,11 @@ const MyReview = () => {
         <div>
 
             <div className='bg-purple-200'>
+
+               {
+                reviews.length <= 0 ? <h1>no review found</h1>:''
+               }
+              
                 {
                     reviews.map(review => <div key={review._id} className='border p-6 mb-5'>
                         <div className="flex items-center justify-between">
@@ -49,8 +65,8 @@ const MyReview = () => {
 
 
                             <div className="flex">
-                                <FaTrash className='mr-5 text-red-700 text-2xl' onClick={()=>handleDelete(review._id)}></FaTrash>
-                                <FaPlus className='text-orange-600 text-2xl'></FaPlus>
+                                <FaTrash onClick={()=>handleDelete(review._id)} className='mr-5 text-red-700 text-2xl'></FaTrash>
+                                <FaPlus onClick={()=>handleUpdateReview(review._id)} className='text-orange-600 text-2xl'></FaPlus>
                             </div>
                         </div>
 
