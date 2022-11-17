@@ -1,14 +1,29 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useLocation, useNavigate} from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import Navbar from '../Navbar/Navbar';
 import { FaGoogle } from 'react-icons/fa';
 import { getAuth, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const auth= getAuth();
 const SignIn = () => {
-    const { signUp} = useContext(AuthContext);
+    const provider =new GoogleAuthProvider();
+    const { signUp,googleSignIn} = useContext(AuthContext);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+    const navigate = useNavigate();
+
+    const handleGoogleSignIn = event => {
+        googleSignIn(provider)
+        .then(result =>{
+            navigate(from,{replace:true});
+        })
+        .catch(err=>console.error(err))
+
+    }
+
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -22,7 +37,8 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                form.reset();
-               updateprofile(name,profile)
+               updateprofile(name,profile);
+               navigate(from, { replace: true });
             })
             .catch(err => console.error(err))
     }
@@ -77,7 +93,7 @@ const SignIn = () => {
                             </div>
                             <p className='text-center text-primary mt-3'>or signin with</p><hr></hr>
                             <div className="flex justify-center gap-3 items-center mt-2">
-                                <FaGoogle className='text-5xl  cursor-pointer text-purple'></FaGoogle>
+                                <FaGoogle onClick={handleGoogleSignIn} className='text-5xl  cursor-pointer text-purple'></FaGoogle>
                             </div>
                             <hr></hr>
                             <p className='text-center mt-5'>Already have an account <Link to={'/signin'} className='ml-2 underline text-primary font-bold'>Please Log In</Link></p>
