@@ -7,7 +7,7 @@ import HomePageServiesCard from './HomePageServiesCard';
 const HomePageServies = () => {
     const [services,setServices]= useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/home/services')
+        fetch('https://travel-care-server.vercel.app/home/services')
         .then(res => res.json())
         .then(data => setServices(data))
 

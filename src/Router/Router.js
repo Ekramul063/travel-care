@@ -24,14 +24,14 @@ const router = createBrowserRouter([
             {
                 path: '/services',
                 loader: async () => {
-                    return fetch(`http://localhost:5000/services`);
+                    return fetch(`https://travel-care-server.vercel.app/services`);
                   },
                 element:<Services></Services>
             },
             {
                 path: '/services/:id',
                 loader: async ({params}) => {
-                    return fetch(`http://localhost:5000/services/${params.id}`);
+                    return fetch(`https://travel-care-server.vercel.app/services/${params.id}`);
                   },
                 element:<ServiceDetails></ServiceDetails>
             },
