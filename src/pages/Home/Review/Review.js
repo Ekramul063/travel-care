@@ -3,12 +3,22 @@ import OwlCarousel from 'react-owl-carousel';
 import banner1 from '../../../asets/banner1.jpg';
 import banner2 from '../../../asets/banner2.jpg';
 import banner3 from '../../../asets/banner3.jpg';
-import quotes from '../../../asets/quotes/quotes.jpg';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './Review.css'
 
 const Review = () => {
+
+
+    const [reviews, setReview] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => setReview(data))
+
+    }, [])
     const options = {
 
         responsive: {
@@ -27,27 +37,26 @@ const Review = () => {
 
     return (
         <div>
-            <div className="">
-               
-
-                <div className='col-span-2'>
+            <div className="bg_img flex items-center ">
+                <div className='slider_container  py-6 px-3'>
                     <OwlCarousel className='owl-theme'{...options} loop margin={10} nav>
-                        <div className='item '>
-                            <div>
-                                <img className='banner' src={banner3} alt="" />
-                            </div>
-                            
-                        </div>
-                        <div className='item '>
-                            <div>
-                                <img className='banner' src={banner2} alt="" />
-                            </div>
-                            
-                        </div>
-                       
+
+                        {
+                            reviews.map(review => <div key={review._id} className='item '>
+
+
+                                <div className="flex flex-col items-center mb-3 pt-2">
+                                    <img style={{ height: '35px', width: '35px', borderRadius: '100%' }} src={review?.img} alt="" />
+                                    <h1 className='font-bold  mt-2'> {review?.email}</h1>
+                                </div>
+
+                                <p className='text-center'>{review?.description}</p>
+
+                            </div>)
+                        }
+
 
                     </OwlCarousel>
-
 
                 </div>
 
