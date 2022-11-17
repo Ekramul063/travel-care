@@ -7,6 +7,13 @@ import { AuthContext } from '../../Context/AuthProvider';
 const MyReview = () => {
     const { user } = useContext(AuthContext);
 
+    const [reviews, setReview] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviewsperson?email=${user.email}`)
+            .then(res => res.json())
+            .then(data => setReview(data))
+    }, [user.email])
+
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure you want to delete this review');
         if(proceed){
@@ -14,16 +21,17 @@ const MyReview = () => {
                 method:'DELETE'
             })
             .then(res=>res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if(data.deletedCount > 0){
+                    alert('deleted successfully');
+                    const remaining = reviews.filter(review => review._id !== id);
+                    setReview(remaining);
+                }
+            })
         }
     }
 
-    const [reviews, setReview] = useState([]);
-    useEffect(() => {
-        fetch(`http://localhost:5000/reviewsperson?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setReview(data))
-    }, [user.email])
+   
 
     return (
         <div>
