@@ -6,9 +6,9 @@ import banner3 from '../../../asets/banner3.jpg';
 import quotes from '../../../asets/quotes/quotes.jpg';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import './Header.css'
+import './Review.css'
 
-const Header = () => {
+const Review = () => {
     const options = {
 
         responsive: {
@@ -27,32 +27,24 @@ const Header = () => {
 
     return (
         <div>
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
-                <div>
-
-                    <div className='none'>
-                        <img className='banner' src={quotes} alt="" />
-                    </div>
-
-                </div>
+            <div className="">
+               
 
                 <div className='col-span-2'>
                     <OwlCarousel className='owl-theme'{...options} loop margin={10} nav>
                         <div className='item '>
                             <div>
-                                <img className='banner' src={banner1} alt="" />
+                                <img className='banner' src={banner3} alt="" />
                             </div>
+                            
                         </div>
-                        <div className='item'>
+                        <div className='item '>
                             <div>
                                 <img className='banner' src={banner2} alt="" />
                             </div>
+                            
                         </div>
-                        <div className='item'>
-                            <div>
-                                <img className='banner' src={banner3} alt="" />
-                            </div>
-                        </div>
+                       
 
                     </OwlCarousel>
 
@@ -68,4 +60,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Review;

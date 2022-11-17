@@ -13,7 +13,7 @@ const HomePageServies = () => {
 
     },[])
     return (
-        <div className='pt-10 pb-24 px-7 mx-auto'>
+        <div className='pt-10 pb-16 px-7 mx-auto'>
             <h1 className='text-center font-bold text-3xl pb-7 text-green-700'>Services</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
