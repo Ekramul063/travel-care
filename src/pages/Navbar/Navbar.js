@@ -26,6 +26,7 @@ const Navbar = () => {
             <li><Link to={'/services'}>Services</Link></li>
             <li><Link to={'/addservice'}>Add Service</Link></li>
             <li><Link to={'/myreview'}>My Review</Link></li>
+            <li><Link to={'/blogs'}>Blogs</Link></li>
            
             <li className='btn btn-warning ml-5'>
               {

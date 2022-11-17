@@ -17,7 +17,7 @@ const HomePageServies = () => {
             <h1 className='text-center font-bold text-3xl pb-7 text-green-700'>Services</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
-                services.map(service => <HomePageServiesCard key={service._id} service={service}></HomePageServiesCard> )
+                services?.map(service => <HomePageServiesCard key={service._id} service={service}></HomePageServiesCard> )
             }
            
         </div>
