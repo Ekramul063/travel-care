@@ -6,8 +6,10 @@ import { AuthContext } from '../../Context/AuthProvider';
 import Navbar from '../Navbar/Navbar';
 import { FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { useState } from 'react';
 
 const SignIn = () => {
+    const [error,setError] = useState('');
     const provider =new GoogleAuthProvider();
     const { logIn, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
@@ -34,7 +36,7 @@ const SignIn = () => {
                 form.reset();
                 navigate(from, { replace: true });
             })
-            .catch(err => console.error(err))
+            .catch(err => setError(err.message))
 
     }
     return (
@@ -59,6 +61,7 @@ const SignIn = () => {
                                 <input name='password' type="password" placeholder="password" className="input input-bordered" />
 
                             </div>
+                            <p className='font-bold text-red-800'>{error}</p>
                             <div className="form-control mt-6">
                                 <button type='submit' className="btn btn-primary">Sign In</button>
                             </div>

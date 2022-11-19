@@ -92,11 +92,7 @@ const ServiceDetails = () => {
                             reviews.map(review => <div key={review._id} className='border p-6 mb-5'>
                                 <div className="flex items-center mb-3">
                                 <img style={{height:'35px',width:'35px', borderRadius:'100%'}} src={review.img} alt="" />
-                                <h1 className='font-bold ml-2'> {review?
-                                    review?.name
-                                    :
-                                    review?.email
-                                }</h1>
+                                <h1 className='font-bold ml-2'> {review?.email}</h1>
                                 </div>
                                
                                 <p className='ml-8'>{review.description}</p>

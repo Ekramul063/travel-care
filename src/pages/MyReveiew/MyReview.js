@@ -55,16 +55,16 @@ const MyReview = () => {
               
                 {
                     reviews.map(review => <div key={review._id} className='border p-6 mb-5'>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between flex-col lg:flex-row md:flex-row">
                             <div className="flex items-center mb-3">
                                 <img style={{ height: '35px', width: '35px', borderRadius: '100%' }} src={user.photoURL} alt="" />
                                 <h1 className='font-bold ml-2'> {review.email}</h1>
                             </div>
-                            <p>{review?.serviceTitle}</p>
-                            <p>{review?.description}</p>
+                            <p className='font-bold text-orange-600'>{review?.serviceTitle}</p>
+                            <p className='my-5'>" {review?.description} "</p>
 
 
-                            <div className="flex">
+                            <div className="flex mt-2">
                                 <FaTrash onClick={()=>handleDelete(review._id)} className='mr-5 text-red-700 text-2xl'></FaTrash>
                                 <FaPlus onClick={()=>handleUpdateReview(review._id)} className='text-orange-600 text-2xl'></FaPlus>
                             </div>

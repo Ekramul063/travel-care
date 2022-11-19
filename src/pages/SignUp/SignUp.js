@@ -6,9 +6,11 @@ import Navbar from '../Navbar/Navbar';
 import { FaGoogle } from 'react-icons/fa';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { useState } from 'react';
 
 const auth= getAuth();
 const SignIn = () => {
+    const [error,setError] = useState('');
     const provider =new GoogleAuthProvider();
     const { signUp,googleSignIn} = useContext(AuthContext);
     const location = useLocation();
@@ -40,7 +42,7 @@ const SignIn = () => {
                updateprofile(name,profile);
                navigate(from, { replace: true });
             })
-            .catch(err => console.error(err))
+            .catch(err => setError(err.message))
     }
     
     const updateprofile =(name,photo)=>{

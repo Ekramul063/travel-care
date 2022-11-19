@@ -1,8 +1,5 @@
 import React from 'react';
 import OwlCarousel from 'react-owl-carousel';
-import banner1 from '../../../asets/banner1.jpg';
-import banner2 from '../../../asets/banner2.jpg';
-import banner3 from '../../../asets/banner3.jpg';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import 'owl.carousel/dist/assets/owl.carousel.css';
